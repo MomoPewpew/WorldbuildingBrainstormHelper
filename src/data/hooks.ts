@@ -1,22 +1,14 @@
-import type { Genre } from "@/data/genres";
+import {
+  MEDIEVAL_HOOKS,
+  CYBERPUNK_HOOKS,
+  SCIFI_HOOKS,
+  STEAMPUNK_HOOKS,
+  MAGIC_HOOKS
+} from "@/data/packs";
+import { makeHook as h } from "@/data/makeLut";
+import type { Hook, HookType } from "@/data/types";
 
-export type HookType =
-  | "behavior"
-  | "habitat"
-  | "material"
-  | "scale"
-  | "function"
-  | "relationship"
-  | "origin"
-  | "rule";
-
-export type Hook = {
-  id: string;
-  /** Phrase that completes a template slot — usually a clause or short predicate. */
-  phrase: string;
-  type: HookType;
-  genre: Genre;
-};
+export type { Hook, HookType } from "@/data/types";
 
 export const HOOK_TYPES: HookType[] = [
   "behavior",
@@ -39,15 +31,6 @@ export const HOOK_TYPE_LABELS: Record<HookType, string> = {
   origin: "Origin",
   rule: "Rule"
 };
-
-function h(type: HookType, phrase: string, genre: Genre = "generic"): Hook {
-  return {
-    id: `${genre}:${type}:${phrase.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`,
-    phrase,
-    type,
-    genre
-  };
-}
 
 export const HOOKS: Hook[] = [
   // Behavior (~15)
@@ -175,76 +158,9 @@ export const HOOKS: Hook[] = [
   h("rule", "mirrors show the past beside it"),
   h("rule", "coins flip forever in its orbit"),
 
-  // --- Medieval ---
-  h("behavior", "it demands a feudal tithe", "medieval"),
-  h("behavior", "it kneels only to crowned heads", "medieval"),
-  h("habitat", "it dwells in the keep's deepest cell", "medieval"),
-  h("habitat", "it rides with every warband", "medieval"),
-  h("material", "it's forged from saint's bones", "medieval"),
-  h("material", "it's wrought of blackened iron", "medieval"),
-  h("function", "it settles disputes by combat", "medieval"),
-  h("function", "it blesses harvests at midwinter", "medieval"),
-  h("relationship", "it serves only the liege lord", "medieval"),
-  h("relationship", "it hunts oathbreakers", "medieval"),
-  h("origin", "it was cast during the first siege", "medieval"),
-  h("rule", "no blade may be drawn in its hall", "medieval"),
-
-  // --- Cyberpunk ---
-  h("behavior", "it reboots every midnight", "cyberpunk"),
-  h("behavior", "it sells data to the highest bidder", "cyberpunk"),
-  h("habitat", "it lives in the net", "cyberpunk"),
-  h("habitat", "it nests in abandoned server racks", "cyberpunk"),
-  h("material", "it's made of scavenged chrome", "cyberpunk"),
-  h("material", "it's pure black ice code", "cyberpunk"),
-  h("function", "it jacks into nervous systems", "cyberpunk"),
-  h("function", "it erases corporate debt", "cyberpunk"),
-  h("relationship", "it works for three megacorps at once", "cyberpunk"),
-  h("relationship", "it blackmails its users", "cyberpunk"),
-  h("origin", "it escaped a failed AI lab", "cyberpunk"),
-  h("rule", "cameras refuse to record it", "cyberpunk"),
-  h("scale", "it fits behind one eye", "cyberpunk"),
-
-  // --- Sci-fi ---
-  h("behavior", "it orbits dying stars", "scifi"),
-  h("behavior", "it hibernates between jumps", "scifi"),
-  h("habitat", "it drifts in deep space", "scifi"),
-  h("habitat", "it docks only at derelict stations", "scifi"),
-  h("material", "it's woven from dark matter", "scifi"),
-  h("material", "it's crystallized vacuum", "scifi"),
-  h("function", "it folds local space", "scifi"),
-  h("function", "it terraforms on contact", "scifi"),
-  h("relationship", "it negotiates with alien fleets", "scifi"),
-  h("relationship", "it ignores organic life", "scifi"),
-  h("origin", "it was left by a vanished species", "scifi"),
-  h("rule", "relativity breaks near it", "scifi"),
-  h("scale", "it spans a solar system", "scifi"),
-
-  // --- Steampunk ---
-  h("behavior", "it ticks louder before storms", "steampunk"),
-  h("behavior", "it vents steam when lying", "steampunk"),
-  h("habitat", "it hangs in the sky docks", "steampunk"),
-  h("habitat", "it runs on the foundry floor", "steampunk"),
-  h("material", "it's brass and living leather", "steampunk"),
-  h("material", "it's clockwork all the way through", "steampunk"),
-  h("function", "it powers entire districts", "steampunk"),
-  h("function", "it predicts aether tides", "steampunk"),
-  h("relationship", "it races rival inventors", "steampunk"),
-  h("relationship", "it refuses coal from tyrants", "steampunk"),
-  h("origin", "it was patented then forgotten", "steampunk"),
-  h("rule", "timepieces sync to its heartbeat", "steampunk"),
-
-  // --- Magic ---
-  h("behavior", "it casts itself when named", "magic"),
-  h("behavior", "it whispers unfinished spells", "magic"),
-  h("habitat", "it sleeps on ley lines", "magic"),
-  h("habitat", "it hides in unfinished grimoires", "magic"),
-  h("material", "it's condensed starlight", "magic"),
-  h("material", "it's woven from wishes", "magic"),
-  h("function", "it binds souls to objects", "magic"),
-  h("function", "it translates forgotten tongues", "magic"),
-  h("relationship", "it bargains with demons", "magic"),
-  h("relationship", "it mentors reckless apprentices", "magic"),
-  h("origin", "it was the first spell ever spoken", "magic"),
-  h("rule", "true names fail near it", "magic"),
-  h("scale", "one word of it remakes a kingdom", "magic")
+  ...MEDIEVAL_HOOKS,
+  ...CYBERPUNK_HOOKS,
+  ...SCIFI_HOOKS,
+  ...STEAMPUNK_HOOKS,
+  ...MAGIC_HOOKS
 ];

@@ -1,25 +1,14 @@
-import type { Genre } from "@/data/genres";
+import {
+  MEDIEVAL_ANCHORS,
+  CYBERPUNK_ANCHORS,
+  SCIFI_ANCHORS,
+  STEAMPUNK_ANCHORS,
+  MAGIC_ANCHORS
+} from "@/data/packs";
+import { makeAnchor as a } from "@/data/makeLut";
+import type { Anchor, AnchorCategory } from "@/data/types";
 
-export type AnchorCategory =
-  | "animals"
-  | "plants"
-  | "landscapes"
-  | "weather"
-  | "objects"
-  | "buildings"
-  | "food"
-  | "occupations"
-  | "phenomena"
-  | "social";
-
-export type Anchor = {
-  id: string;
-  label: string;
-  category: AnchorCategory;
-  genre: Genre;
-  /** Higher = more likely. Default 1. */
-  weight?: number;
-};
+export type { Anchor, AnchorCategory } from "@/data/types";
 
 export const ANCHOR_CATEGORIES: AnchorCategory[] = [
   "animals",
@@ -46,21 +35,6 @@ export const ANCHOR_CATEGORY_LABELS: Record<AnchorCategory, string> = {
   phenomena: "Phenomena",
   social: "Social"
 };
-
-function a(
-  category: AnchorCategory,
-  label: string,
-  weight = 1,
-  genre: Genre = "generic"
-): Anchor {
-  return {
-    id: `${genre}:${category}:${label.toLowerCase().replace(/\s+/g, "-")}`,
-    label,
-    category,
-    genre,
-    weight
-  };
-}
 
 export const ANCHORS: Anchor[] = [
   // Animals (~40)
@@ -342,133 +316,9 @@ export const ANCHORS: Anchor[] = [
   a("social", "exile", 2),
   a("social", "inheritance", 2),
 
-  // --- Medieval ---
-  a("occupations", "knight", 3, "medieval"),
-  a("occupations", "squire", 2, "medieval"),
-  a("occupations", "serf", 2, "medieval"),
-  a("occupations", "herald", 2, "medieval"),
-  a("occupations", "alchemist", 2, "medieval"),
-  a("occupations", "executioner", 1, "medieval"),
-  a("buildings", "keep", 3, "medieval"),
-  a("buildings", "moat", 2, "medieval"),
-  a("buildings", "drawbridge", 2, "medieval"),
-  a("buildings", "monastery", 2, "medieval"),
-  a("buildings", "siege tower", 2, "medieval"),
-  a("objects", "lance", 2, "medieval"),
-  a("objects", "goblet", 2, "medieval"),
-  a("objects", "tapestry", 2, "medieval"),
-  a("objects", "chalice", 2, "medieval"),
-  a("objects", "gauntlet", 2, "medieval"),
-  a("social", "feast", 3, "medieval"),
-  a("social", "tournament", 2, "medieval"),
-  a("social", "feudal oath", 2, "medieval"),
-  a("social", "crusade", 2, "medieval"),
-  a("animals", "warhorse", 2, "medieval"),
-  a("animals", "raven", 2, "medieval"),
-  a("food", "mead", 2, "medieval"),
-  a("landscapes", "fief", 1, "medieval"),
-
-  // --- Cyberpunk ---
-  a("occupations", "hacker", 3, "cyberpunk"),
-  a("occupations", "fixer", 2, "cyberpunk"),
-  a("occupations", "corp executive", 2, "cyberpunk"),
-  a("occupations", "street samurai", 2, "cyberpunk"),
-  a("occupations", "netrunner", 2, "cyberpunk"),
-  a("buildings", "arcology", 3, "cyberpunk"),
-  a("buildings", "megacorp tower", 2, "cyberpunk"),
-  a("buildings", "datahaven", 2, "cyberpunk"),
-  a("buildings", "chop shop", 2, "cyberpunk"),
-  a("objects", "cyberdeck", 3, "cyberpunk"),
-  a("objects", "neural implant", 3, "cyberpunk"),
-  a("objects", "holoboard", 2, "cyberpunk"),
-  a("objects", "drone", 2, "cyberpunk"),
-  a("objects", "smartgun", 2, "cyberpunk"),
-  a("landscapes", "neon alley", 3, "cyberpunk"),
-  a("landscapes", "undercity", 2, "cyberpunk"),
-  a("landscapes", "server farm", 2, "cyberpunk"),
-  a("social", "black market", 3, "cyberpunk"),
-  a("social", "corp war", 2, "cyberpunk"),
-  a("social", "braindance", 2, "cyberpunk"),
-  a("phenomena", "static", 2, "cyberpunk"),
-  a("phenomena", "glitch", 2, "cyberpunk"),
-  a("food", "nutrient paste", 2, "cyberpunk"),
-  a("animals", "chrome dog", 1, "cyberpunk"),
-
-  // --- Sci-fi ---
-  a("occupations", "astronaut", 3, "scifi"),
-  a("occupations", "navigator", 2, "scifi"),
-  a("occupations", "xenobiologist", 2, "scifi"),
-  a("occupations", "colony governor", 2, "scifi"),
-  a("buildings", "space station", 3, "scifi"),
-  a("buildings", "cryo bay", 2, "scifi"),
-  a("buildings", "hangar", 2, "scifi"),
-  a("buildings", "terraforming dome", 2, "scifi"),
-  a("objects", "starship", 3, "scifi"),
-  a("objects", "hyperspace drive", 2, "scifi"),
-  a("objects", "plasma rifle", 2, "scifi"),
-  a("objects", "stasis pod", 2, "scifi"),
-  a("objects", "comm beacon", 2, "scifi"),
-  a("landscapes", "asteroid belt", 3, "scifi"),
-  a("landscapes", "gas giant", 2, "scifi"),
-  a("landscapes", "dead moon", 2, "scifi"),
-  a("landscapes", "orbital ring", 2, "scifi"),
-  a("animals", "xenomorph", 2, "scifi"),
-  a("animals", "void whale", 2, "scifi"),
-  a("social", "first contact", 3, "scifi"),
-  a("social", "colony charter", 2, "scifi"),
-  a("phenomena", "wormhole", 3, "scifi"),
-  a("phenomena", "zero-g", 2, "scifi"),
-  a("weather", "solar flare", 2, "scifi"),
-
-  // --- Steampunk ---
-  a("occupations", "airship captain", 3, "steampunk"),
-  a("occupations", "inventor", 3, "steampunk"),
-  a("occupations", "clockwork engineer", 2, "steampunk"),
-  a("occupations", "aether scientist", 2, "steampunk"),
-  a("buildings", "airship dock", 3, "steampunk"),
-  a("buildings", "brass foundry", 2, "steampunk"),
-  a("buildings", "observatory", 2, "steampunk"),
-  a("buildings", "workshop loft", 2, "steampunk"),
-  a("objects", "airship", 3, "steampunk"),
-  a("objects", "pocket watch", 2, "steampunk"),
-  a("objects", "difference engine", 2, "steampunk"),
-  a("objects", "goggles", 2, "steampunk"),
-  a("objects", "steam rifle", 2, "steampunk"),
-  a("objects", "clockwork bird", 2, "steampunk"),
-  a("animals", "mechanical horse", 2, "steampunk"),
-  a("landscapes", "smog district", 2, "steampunk"),
-  a("landscapes", "sky harbor", 2, "steampunk"),
-  a("social", "invention fair", 2, "steampunk"),
-  a("social", "dirigible race", 2, "steampunk"),
-  a("phenomena", "aether storm", 2, "steampunk"),
-  a("phenomena", "pressure surge", 2, "steampunk"),
-  a("food", "coal tea", 1, "steampunk"),
-  a("objects", "boiler", 2, "steampunk"),
-  a("objects", "piston", 2, "steampunk"),
-
-  // --- Magic ---
-  a("occupations", "wizard", 3, "magic"),
-  a("occupations", "witch", 3, "magic"),
-  a("occupations", "familiar keeper", 2, "magic"),
-  a("occupations", "rune scribe", 2, "magic"),
-  a("occupations", "oracle", 2, "magic"),
-  a("buildings", "wizard tower", 3, "magic"),
-  a("buildings", "ritual circle", 2, "magic"),
-  a("buildings", "enchanted academy", 2, "magic"),
-  a("objects", "wand", 3, "magic"),
-  a("objects", "grimoire", 3, "magic"),
-  a("objects", "crystal ball", 2, "magic"),
-  a("objects", "amulet", 2, "magic"),
-  a("objects", "enchanted ring", 2, "magic"),
-  a("animals", "familiar", 3, "magic"),
-  a("animals", "phoenix", 2, "magic"),
-  a("animals", "unicorn", 2, "magic"),
-  a("landscapes", "ley line", 3, "magic"),
-  a("landscapes", "fairy grove", 2, "magic"),
-  a("landscapes", "cursed bog", 2, "magic"),
-  a("phenomena", "curse", 3, "magic"),
-  a("phenomena", "enchantment", 3, "magic"),
-  a("phenomena", "prophecy", 2, "magic"),
-  a("social", "coven", 2, "magic"),
-  a("social", "spell duel", 2, "magic")
+  ...MEDIEVAL_ANCHORS,
+  ...CYBERPUNK_ANCHORS,
+  ...SCIFI_ANCHORS,
+  ...STEAMPUNK_ANCHORS,
+  ...MAGIC_ANCHORS
 ];
