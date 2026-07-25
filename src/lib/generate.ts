@@ -116,7 +116,20 @@ const MASS_NOUNS = new Set([
   "lightning",
   "thunder",
   "aurora",
-  "tide"
+  "tide",
+  "wheat",
+  "rice",
+  "beer",
+  "ale",
+  "mead",
+  "cider",
+  "butter",
+  "sugar",
+  "jam",
+  "stew",
+  "rumor",
+  "plague",
+  "famine"
 ]);
 
 function withArticle(label: string): string {

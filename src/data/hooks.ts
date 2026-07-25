@@ -49,6 +49,16 @@ export const HOOKS: Hook[] = [
   h("behavior", "it forgets its own name each morning"),
   h("behavior", "it collects lost keys"),
   h("behavior", "it dances before storms"),
+  h("behavior", "it arrives exactly when needed"),
+  h("behavior", "it leaves before anyone thanks it"),
+  h("behavior", "it answers questions with weather"),
+  h("behavior", "it rearranges furniture overnight"),
+  h("behavior", "it copies the last person who touched it"),
+  h("behavior", "it only works for people who are lost"),
+  h("behavior", "it argues with its own reflection"),
+  h("behavior", "it keeps one secret per owner"),
+  h("behavior", "it ages everyone nearby by a day"),
+  h("behavior", "it refuses to cross running water"),
 
   // Habitat (~14)
   h("habitat", "it lives underwater"),
@@ -65,6 +75,12 @@ export const HOOKS: Hook[] = [
   h("habitat", "it settles wherever vows are broken"),
   h("habitat", "it forms under bridges at midnight"),
   h("habitat", "it only exists in border towns"),
+  h("habitat", "it rides in unused pockets"),
+  h("habitat", "it nests in unfinished sentences"),
+  h("habitat", "it waits under dinner tables"),
+  h("habitat", "it thrives in places people apologize"),
+  h("habitat", "it hides in the space after goodbye"),
+  h("habitat", "it grows wherever maps disagree"),
 
   // Material (~14)
   h("material", "it's made of condensed magic"),
@@ -81,6 +97,12 @@ export const HOOKS: Hook[] = [
   h("material", "it's ash that still burns"),
   h("material", "it's silk spun from shadows"),
   h("material", "it's stone that breathes"),
+  h("material", "it's bread that never stales"),
+  h("material", "it's glass that softens when trusted"),
+  h("material", "it's metal that rusts into flowers"),
+  h("material", "it's wood that grew without a tree"),
+  h("material", "it's ice that never drips"),
+  h("material", "it's cloth woven from apologies"),
 
   // Scale (~12)
   h("scale", "it's the size of a city"),
@@ -95,6 +117,11 @@ export const HOOKS: Hook[] = [
   h("scale", "it's as tall as silence"),
   h("scale", "entire forests grow on its back"),
   h("scale", "it outlives every empire"),
+  h("scale", "it fits in the pause between words"),
+  h("scale", "it is exactly as large as needed"),
+  h("scale", "it grows with every rumor about it"),
+  h("scale", "it is smaller than its own shadow"),
+  h("scale", "it outlives the languages that name it"),
 
   // Function (~14)
   h("function", "it's used like a compass"),
@@ -111,6 +138,12 @@ export const HOOKS: Hook[] = [
   h("function", "it lights the way for the lost"),
   h("function", "it seals borders"),
   h("function", "it pollinates memories"),
+  h("function", "it replaces lost childhoods"),
+  h("function", "it teaches animals to read maps"),
+  h("function", "it turns enemies into dinner guests"),
+  h("function", "it keeps ships from forgetting home"),
+  h("function", "it prices things by how much they are loved"),
+  h("function", "it edits bad luck out of stories"),
 
   // Relationship (~14)
   h("relationship", "it farms its prey"),
@@ -127,6 +160,12 @@ export const HOOKS: Hook[] = [
   h("relationship", "it rivals the sun"),
   h("relationship", "it partners with thieves"),
   h("relationship", "it mourns every harvest"),
+  h("relationship", "it blackmails the weather"),
+  h("relationship", "it befriends locked doors"),
+  h("relationship", "it mentors unfinished inventions"),
+  h("relationship", "it refuses to work for the rich"),
+  h("relationship", "it borrows faces from strangers"),
+  h("relationship", "it keeps score for forgotten gods"),
 
   // Origin (~12)
   h("origin", "it's actually a fossil"),
@@ -141,6 +180,12 @@ export const HOOKS: Hook[] = [
   h("origin", "it is the shed skin of a season"),
   h("origin", "it was planted by refugees"),
   h("origin", "it is a leftover from creation"),
+  h("origin", "it was the punchline of a cosmic joke"),
+  h("origin", "it condensed out of an unanswered prayer"),
+  h("origin", "it was smuggled out of a dying language"),
+  h("origin", "it used to be someone's favorite song"),
+  h("origin", "it was assembled from canceled futures"),
+  h("origin", "it was the receipt for a sold soul"),
 
   // Rule (~14)
   h("rule", "fire freezes around it"),
@@ -157,6 +202,12 @@ export const HOOKS: Hook[] = [
   h("rule", "doors open only outward near it"),
   h("rule", "mirrors show the past beside it"),
   h("rule", "coins flip forever in its orbit"),
+  h("rule", "lies become visible as frost near it"),
+  h("rule", "lost things migrate toward it"),
+  h("rule", "clocks apologize when it enters a room"),
+  h("rule", "children tell the truth within earshot of it"),
+  h("rule", "iron softens into clay beside it"),
+  h("rule", "songs forget their second verse near it"),
 
   ...MEDIEVAL_HOOKS,
   ...CYBERPUNK_HOOKS,
