@@ -31,27 +31,31 @@ jobs:
           # Optional; set as a GitHub Repository Variable if you need absolute URLs.
           NEXT_PUBLIC_SITE_URL: ${{ vars.NEXT_PUBLIC_SITE_URL }}
 
-      - name: Install SFTP client (password auth)
+      - name: Install SFTP client
         run: |
           sudo apt-get update
-          sudo apt-get install -y openssh-client sshpass
+          sudo apt-get install -y openssh-client
+
+      - name: Start ssh-agent with deploy key
+        uses: webfactory/ssh-agent@v0.9.1
+        with:
+          # Paste the private key file contents as a multiline secret (including BEGIN/END lines).
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Deploy via SFTP (upload out/)
         env:
           SSH_HOST: ${{ secrets.SSH_HOST }}
           SSH_USERNAME: ${{ secrets.SSH_USERNAME }}
-          SSH_PASSWORD: ${{ secrets.SSH_PASSWORD }}
           SSH_PORT: ${{ secrets.SSH_PORT }}
           SSH_TARGET_DIR: ${{ secrets.SSH_TARGET_DIR }}
         run: |
           test -d out
           : "${SSH_PORT:=22}"
-          # SFTP accounts are usually chrooted to landing/; site files go in landing/files/.
+          # SFTP accounts are usually chrooted; site files go in files/.
           : "${SSH_TARGET_DIR:=files}"
 
           SSH_HOST_CLEAN="$(printf %s "${SSH_HOST}" | tr -d '\r\n')"
           SSH_USERNAME_CLEAN="$(printf %s "${SSH_USERNAME}" | tr -d '\r\n')"
-          SSH_PASSWORD_CLEAN="$(printf %s "${SSH_PASSWORD}" | tr -d '\r\n')"
           SSH_PORT_CLEAN="$(printf %s "${SSH_PORT}" | tr -d '\r\n')"
           SSH_TARGET_DIR_CLEAN="$(printf %s "${SSH_TARGET_DIR}" | tr -d '\r\n')"
 
@@ -68,8 +72,10 @@ jobs:
 
           sed -i "s|__TARGET_DIR__|${SSH_TARGET_DIR_CLEAN}|g" sftp-batch.txt
 
-          sshpass -p "${SSH_PASSWORD_CLEAN}" \
-            sftp -oBatchMode=no -oStrictHostKeyChecking=no -oUserKnownHostsFile=/dev/null \
+          # Key comes from ssh-agent (webfactory/ssh-agent); do not pass -i.
+          sftp -oBatchMode=yes \
+            -oStrictHostKeyChecking=no \
+            -oUserKnownHostsFile=/dev/null \
             -P "${SSH_PORT_CLEAN}" \
             -b sftp-batch.txt \
             "${SSH_USERNAME_CLEAN}@${SSH_HOST_CLEAN}"

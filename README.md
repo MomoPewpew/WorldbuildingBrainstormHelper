@@ -2,8 +2,6 @@
 
 A small static webapp that helps you brainstorm worldbuilding prompts by pairing an everyday **anchor** with an incongruent **hook**.
 
-No accounts, no AI — curated lookup tables and templates.
-
 ## How it works
 
 Each idea fills one of three templates:
@@ -67,10 +65,30 @@ On pushes to `main`, GitHub Actions builds the static export (`out/`) and upload
 | Secret | Purpose |
 |--------|---------|
 | `SSH_HOST` | SFTP hostname |
-| `SSH_USERNAME` | SFTP username |
-| `SSH_PASSWORD` | SFTP password |
+| `SSH_USERNAME` | SFTP username (e.g. `worldbuilding`) |
+| `SSH_PRIVATE_KEY` | Full private key file contents (multiline PEM, including `BEGIN` / `END` lines) |
 | `SSH_PORT` | Optional, default `22` |
 | `SSH_TARGET_DIR` | Optional remote dir (default `files`). Override if your host uses a different path. |
+
+Generate a key and set the secret:
+
+```bash
+ssh-keygen -t ed25519 -f worldbuilding_deploy -N "" -C "github-deploy-worldbuilding"
+
+# Copy the PRIVATE key into GitHub → Settings → Secrets → SSH_PRIVATE_KEY
+# Paste the entire file, including the BEGIN/END lines (multiline is OK):
+cat worldbuilding_deploy
+```
+
+On the server, install the matching **public** key:
+
+```bash
+sudo mkdir -p /var/www/worldbuilding/.ssh
+sudo tee /var/www/worldbuilding/.ssh/authorized_keys >/dev/null < worldbuilding_deploy.pub
+sudo chown -R worldbuilding:worldbuilding /var/www/worldbuilding/.ssh
+sudo chmod 700 /var/www/worldbuilding/.ssh
+sudo chmod 600 /var/www/worldbuilding/.ssh/authorized_keys
+```
 
 ### Variables (optional)
 
