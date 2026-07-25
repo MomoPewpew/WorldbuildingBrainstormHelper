@@ -39,6 +39,22 @@ export default function RootLayout({
               </div>
             </header>
             <main className="mx-auto max-w-5xl px-6 py-10">{children}</main>
+            <footer className="mx-auto max-w-5xl space-y-1 px-6 pb-12 pt-6 text-xs text-zinc-600 dark:text-zinc-500">
+              <div>
+                Made by <span className="font-medium text-zinc-800 dark:text-zinc-200">Marijn Tepas</span>.{" "}
+                Website source is licensed under the{" "}
+                <span className="font-medium text-zinc-800 dark:text-zinc-200">GNU GPL-3.0</span>.{" "}
+                <a
+                  href="https://github.com/MomoPewpew/WorldbuildingBrainstormHelper"
+                  className="underline decoration-black/20 underline-offset-4 hover:decoration-black/40 dark:decoration-white/20 dark:hover:decoration-white/40"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Source code
+                </a>
+                .
+              </div>
+            </footer>
           </div>
         </ThemeProvider>
       </body>
