@@ -1,4 +1,9 @@
-import { makeAnchor as a, makeHook as h } from "@/data/makeLut";
+import {
+  makeAnchor as a,
+  makeFragment as f,
+  makeHook as h,
+  makeHookPattern as p
+} from "@/data/makeLut";
 
 export const MEDIEVAL_ANCHORS = [
   // Animals
@@ -142,4 +147,46 @@ export const MEDIEVAL_HOOKS = [
   h("rule", "oaths spoken near it cannot be broken", "medieval"),
   h("rule", "crowns lose their claim beside it", "medieval"),
   h("rule", "serfs walk free in its shadow", "medieval")
+];
+
+export const MEDIEVAL_FRAGMENTS = [
+  f("substance", "saint's bones", "medieval"),
+  f("substance", "blackened iron", "medieval"),
+  f("substance", "crusader banners", "medieval"),
+  f("substance", "melted crowns", "medieval"),
+  f("substance", "monastery oak", "medieval"),
+  f("place", "the keep's deepest cell", "medieval"),
+  f("place", "great hall rafters", "medieval"),
+  f("place", "pilgrimage roads", "medieval"),
+  f("place", "the drawbridge shadow", "medieval"),
+  f("agent", "the liege lord", "medieval"),
+  f("agent", "oathbreakers", "medieval"),
+  f("agent", "church bells", "medieval"),
+  f("agent", "the serfs", "medieval"),
+  f("bond", "kneels only to", "medieval"),
+  f("bond", "hunts", "medieval"),
+  f("verb", "demands a feudal tithe", "medieval"),
+  f("verb", "rides out at every muster", "medieval"),
+  f("verb", "holds court", "medieval"),
+  f("useAs", "a feudal oath", "medieval"),
+  f("does", "settles disputes by combat", "medieval"),
+  f("does", "calls vassals to war", "medieval"),
+  f("size", "the whole fief", "medieval"),
+  f("size", "a knight's gauntlet", "medieval"),
+  f("size", "the keep", "medieval"),
+  f("source", "a broken lance", "medieval"),
+  f("source", "the first siege", "medieval"),
+  f("force", "oaths", "medieval"),
+  f("force", "crowns", "medieval"),
+  f("force", "blades", "medieval"),
+  f("effect", "will bind forever", "medieval"),
+  f("effect", "will lose their claim", "medieval"),
+  f("effect", "may not be drawn", "medieval")
+];
+
+export const MEDIEVAL_PATTERNS = [
+  p("material", "it's wrought of {substance}", "medieval"),
+  p("material", "it's cast from {substance}", "medieval"),
+  p("habitat", "it dwells in {place}", "medieval"),
+  p("origin", "it was forged from {source}", "medieval")
 ];

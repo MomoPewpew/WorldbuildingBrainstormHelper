@@ -1,5 +1,20 @@
 import type { Genre } from "@/data/genres";
-import type { Anchor, AnchorCategory, Hook, HookType } from "@/data/types";
+import type {
+  Anchor,
+  AnchorCategory,
+  Hook,
+  HookFragment,
+  HookPattern,
+  HookSlot,
+  HookType
+} from "@/data/types";
+
+function slugify(value: string): string {
+  return value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+}
 
 export function makeAnchor(
   category: AnchorCategory,
@@ -8,7 +23,7 @@ export function makeAnchor(
   genre: Genre = "generic"
 ): Anchor {
   return {
-    id: `${genre}:${category}:${label.toLowerCase().replace(/\s+/g, "-")}`,
+    id: `${genre}:${category}:${slugify(label)}`,
     label,
     category,
     genre,
@@ -22,12 +37,35 @@ export function makeHook(
   genre: Genre = "generic"
 ): Hook {
   return {
-    id: `${genre}:${type}:${phrase
-      .toLowerCase()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/^-|-$/g, "")}`,
+    id: `${genre}:${type}:${slugify(phrase)}`,
     phrase,
     type,
+    genre
+  };
+}
+
+export function makeFragment(
+  slot: HookSlot,
+  label: string,
+  genre: Genre = "generic"
+): HookFragment {
+  return {
+    id: `${genre}:${slot}:${slugify(label)}`,
+    slot,
+    label,
+    genre
+  };
+}
+
+export function makeHookPattern(
+  type: HookType,
+  pattern: string,
+  genre: Genre = "generic"
+): HookPattern {
+  return {
+    id: `${genre}:${type}:${slugify(pattern)}`,
+    type,
+    pattern,
     genre
   };
 }

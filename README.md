@@ -104,11 +104,13 @@ src/
   components/          # UI (randomizer, filters, theme)
   data/
     anchors.ts         # Generic anchors + pack imports
-    hooks.ts           # Generic hooks + pack imports
+    hooks.ts           # Curated hook phrases + pack imports
+    hookFragments.ts   # Slot fillers for composed hooks
+    hookPatterns.ts    # Hook phrase templates ({slot} placeholders)
     templates.ts       # Prompt templates
     genres.ts          # Genre ids / labels
     packs/             # Genre-specific LUT packs
-    makeLut.ts         # Anchor/hook helpers
+    makeLut.ts         # Anchor/hook/fragment/pattern helpers
   lib/
     generate.ts        # Weighted random generation + locks
     genrePreferences.ts
@@ -118,13 +120,17 @@ src/
 
 LUT quality matters more than size. Prefer **basic-level** nouns people can picture instantly (`tree`, `whale`, `castle`) over obscure specifics (`corgi`, `sessile oak`).
 
+Direct combination and false belief hooks are either a curated phrase from `hooks.ts`, or **composed** at roll time from a pattern + fragment LUTs (e.g. `it's made of {substance}` + `memory` → *it's made of memory*). Mistaken identity still double-picks anchors.
+
 ### Add a generic entry
 
-In `src/data/anchors.ts` or `src/data/hooks.ts`:
+In `src/data/anchors.ts`, `src/data/hooks.ts`, `src/data/hookFragments.ts`, or `src/data/hookPatterns.ts`:
 
 ```ts
 a("animals", "otter", 2);
 h("behavior", "it only wakes during eclipses");
+f("substance", "river glass");
+p("material", "it's carved from {substance}");
 ```
 
 ### Add a genre entry
@@ -134,26 +140,32 @@ Edit the matching file under `src/data/packs/` (e.g. `medieval.ts`):
 ```ts
 a("objects", "reliquary", 2, "medieval");
 h("rule", "oaths spoken near it bind forever", "medieval");
+f("substance", "saint's bones", "medieval");
+p("material", "it's wrought of {substance}", "medieval");
 ```
 
-Helpers (`makeAnchor` / `makeHook` in `src/data/makeLut.ts`):
+Helpers (`makeAnchor` / `makeHook` / `makeFragment` / `makeHookPattern` in `src/data/makeLut.ts`):
 
 | Helper | Args |
 |--------|------|
 | Anchor | `category`, `label`, `weight?`, `genre?` |
 | Hook | `type`, `phrase`, `genre?` |
+| Fragment | `slot`, `label`, `genre?` |
+| Pattern | `type`, `pattern` (with `{slot}`s), `genre?` |
 
 **Anchor categories:** animals, plants, landscapes, weather, objects, buildings, food, occupations, phenomena, social
 
 **Hook types:** behavior, habitat, material, scale, function, relationship, origin, rule
 
-Hooks should usually read naturally after *“It’s X, but …”* (often starting with `it` / `it’s`).
+**Fragment slots:** substance, trait, place, verb, trigger, agent, bond, useAs, does, size, source, force, effect
+
+Hooks should usually read naturally after *“It’s X, but …”* (often starting with `it` / `it’s`). Pattern phrases should follow the same convention.
 
 ### Add a new genre
 
 1. Add the id to `src/data/genres.ts`
 2. Create `src/data/packs/<genre>.ts` and export it from `src/data/packs/index.ts`
-3. Spread the new arrays into `ANCHORS` / `HOOKS`
+3. Spread the new arrays into `ANCHORS` / `HOOKS` / `HOOK_FRAGMENTS` / `HOOK_PATTERNS`
 
 ## Design notes
 

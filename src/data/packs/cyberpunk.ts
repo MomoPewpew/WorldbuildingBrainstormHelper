@@ -1,4 +1,9 @@
-import { makeAnchor as a, makeHook as h } from "@/data/makeLut";
+import {
+  makeAnchor as a,
+  makeFragment as f,
+  makeHook as h,
+  makeHookPattern as p
+} from "@/data/makeLut";
 
 export const CYBERPUNK_ANCHORS = [
   // Animals
@@ -139,4 +144,41 @@ export const CYBERPUNK_HOOKS = [
   h("rule", "ICE softens in its presence", "cyberpunk"),
   h("rule", "loyalty chips fail beside it", "cyberpunk"),
   h("rule", "ads go silent around it", "cyberpunk")
+];
+
+export const CYBERPUNK_FRAGMENTS = [
+  f("substance", "chrome and wetware", "cyberpunk"),
+  f("substance", "black-market chrome", "cyberpunk"),
+  f("substance", "stolen data", "cyberpunk"),
+  f("substance", "neon fog", "cyberpunk"),
+  f("place", "server farms", "cyberpunk"),
+  f("place", "megatower maintenance shafts", "cyberpunk"),
+  f("place", "black ICE corridors", "cyberpunk"),
+  f("place", "arcade alleys", "cyberpunk"),
+  f("agent", "fixrunners", "cyberpunk"),
+  f("agent", "megacorp execs", "cyberpunk"),
+  f("agent", "street docs", "cyberpunk"),
+  f("bond", "jacks into", "cyberpunk"),
+  f("bond", "sells out", "cyberpunk"),
+  f("verb", "pings ghost networks", "cyberpunk"),
+  f("verb", "rewrites its own firmware", "cyberpunk"),
+  f("does", "cracks loyalty chips", "cyberpunk"),
+  f("does", "launders corporate debt", "cyberpunk"),
+  f("useAs", "a dead drop", "cyberpunk"),
+  f("size", "a datachip", "cyberpunk"),
+  f("size", "a whole arcology", "cyberpunk"),
+  f("source", "a wiped megacorp vault", "cyberpunk"),
+  f("source", "a burnt-out chrome clinic", "cyberpunk"),
+  f("force", "cameras", "cyberpunk"),
+  f("force", "contracts", "cyberpunk"),
+  f("force", "ads", "cyberpunk"),
+  f("effect", "will refuse to record", "cyberpunk"),
+  f("effect", "will void themselves", "cyberpunk"),
+  f("effect", "will go silent", "cyberpunk")
+];
+
+export const CYBERPUNK_PATTERNS = [
+  p("material", "it's plated in {substance}", "cyberpunk"),
+  p("habitat", "it jacks into {place}", "cyberpunk"),
+  p("origin", "it was scraped from {source}", "cyberpunk")
 ];

@@ -36,3 +36,34 @@ export type Hook = {
   type: HookType;
   genre: Genre;
 };
+
+/** Named slots filled when composing a hook from a pattern + fragments. */
+export type HookSlot =
+  | "substance"
+  | "trait"
+  | "place"
+  | "verb"
+  | "trigger"
+  | "agent"
+  | "bond"
+  | "useAs"
+  | "does"
+  | "size"
+  | "source"
+  | "force"
+  | "effect";
+
+export type HookFragment = {
+  id: string;
+  slot: HookSlot;
+  label: string;
+  genre: Genre;
+};
+
+/** Pattern with `{slot}` placeholders, e.g. "it's made of {substance}". */
+export type HookPattern = {
+  id: string;
+  type: HookType;
+  pattern: string;
+  genre: Genre;
+};

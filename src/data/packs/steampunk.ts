@@ -1,4 +1,9 @@
-import { makeAnchor as a, makeHook as h } from "@/data/makeLut";
+import {
+  makeAnchor as a,
+  makeFragment as f,
+  makeHook as h,
+  makeHookPattern as p
+} from "@/data/makeLut";
 
 export const STEAMPUNK_ANCHORS = [
   // Animals
@@ -139,4 +144,41 @@ export const STEAMPUNK_HOOKS = [
   h("rule", "gears lock in its shadow", "steampunk"),
   h("rule", "aether thickens around it", "steampunk"),
   h("rule", "compasses spin beside it", "steampunk")
+];
+
+export const STEAMPUNK_FRAGMENTS = [
+  f("substance", "brass and aether", "steampunk"),
+  f("substance", "clockwork ivory", "steampunk"),
+  f("substance", "pressurized steam", "steampunk"),
+  f("substance", "tempered copper", "steampunk"),
+  f("place", "boiler rooms", "steampunk"),
+  f("place", "airship rigging", "steampunk"),
+  f("place", "clocktower lofts", "steampunk"),
+  f("place", "gear halls", "steampunk"),
+  f("agent", "inventors", "steampunk"),
+  f("agent", "airship captains", "steampunk"),
+  f("agent", "guild inspectors", "steampunk"),
+  f("bond", "winds", "steampunk"),
+  f("bond", "calibrates", "steampunk"),
+  f("verb", "ticks louder before rain", "steampunk"),
+  f("verb", "vents steam in Morse", "steampunk"),
+  f("does", "powers whole districts", "steampunk"),
+  f("does", "keeps airships aloft", "steampunk"),
+  f("useAs", "a pressure gauge", "steampunk"),
+  f("size", "a pocket chronometer", "steampunk"),
+  f("size", "an airship envelope", "steampunk"),
+  f("source", "a rejected patent", "steampunk"),
+  f("source", "a foundry accident", "steampunk"),
+  f("force", "steam", "steampunk"),
+  f("force", "gears", "steampunk"),
+  f("force", "compasses", "steampunk"),
+  f("effect", "will refuse to cool", "steampunk"),
+  f("effect", "will lock", "steampunk"),
+  f("effect", "will spin", "steampunk")
+];
+
+export const STEAMPUNK_PATTERNS = [
+  p("material", "it's machined from {substance}", "steampunk"),
+  p("habitat", "it nests among {place}", "steampunk"),
+  p("origin", "it was clocked out of {source}", "steampunk")
 ];

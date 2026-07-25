@@ -1,4 +1,9 @@
-import { makeAnchor as a, makeHook as h } from "@/data/makeLut";
+import {
+  makeAnchor as a,
+  makeFragment as f,
+  makeHook as h,
+  makeHookPattern as p
+} from "@/data/makeLut";
 
 export const MAGIC_ANCHORS = [
   // Animals
@@ -141,4 +146,45 @@ export const MAGIC_HOOKS = [
   h("rule", "wands refuse to work in its shadow", "magic"),
   h("rule", "curses cannot take root near it", "magic"),
   h("rule", "mirrors show possible futures around it", "magic")
+];
+
+export const MAGIC_FRAGMENTS = [
+  f("substance", "condensed starlight", "magic"),
+  f("substance", "wishes", "magic"),
+  f("substance", "solidified mana", "magic"),
+  f("substance", "prophecy glass", "magic"),
+  f("place", "ley lines", "magic"),
+  f("place", "unfinished grimoires", "magic"),
+  f("place", "crystal balls", "magic"),
+  f("place", "ritual circles", "magic"),
+  f("agent", "demons", "magic"),
+  f("agent", "reckless apprentices", "magic"),
+  f("agent", "true wizards", "magic"),
+  f("agent", "oracles", "magic"),
+  f("bond", "bargains with", "magic"),
+  f("bond", "mentors", "magic"),
+  f("verb", "casts itself", "magic"),
+  f("verb", "whispers unfinished spells", "magic"),
+  f("verb", "rewrites runes", "magic"),
+  f("does", "binds souls to objects", "magic"),
+  f("does", "translates forgotten tongues", "magic"),
+  f("useAs", "a focus", "magic"),
+  f("size", "a wand tip", "magic"),
+  f("size", "an entire sanctum", "magic"),
+  f("source", "a broken wand", "magic"),
+  f("source", "a wizard's last wish", "magic"),
+  f("force", "true names", "magic"),
+  f("force", "spells", "magic"),
+  f("force", "wands", "magic"),
+  f("force", "curses", "magic"),
+  f("effect", "will fail", "magic"),
+  f("effect", "will reverse", "magic"),
+  f("effect", "will refuse to work", "magic"),
+  f("effect", "cannot take root", "magic")
+];
+
+export const MAGIC_PATTERNS = [
+  p("material", "it's spun from {substance}", "magic"),
+  p("habitat", "it sleeps on {place}", "magic"),
+  p("origin", "it hatched from {source}", "magic")
 ];

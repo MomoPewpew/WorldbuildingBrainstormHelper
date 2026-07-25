@@ -1,4 +1,9 @@
-import { makeAnchor as a, makeHook as h } from "@/data/makeLut";
+import {
+  makeAnchor as a,
+  makeFragment as f,
+  makeHook as h,
+  makeHookPattern as p
+} from "@/data/makeLut";
 
 export const SCIFI_ANCHORS = [
   // Animals
@@ -139,4 +144,41 @@ export const SCIFI_HOOKS = [
   h("rule", "gravity flips beside it", "scifi"),
   h("rule", "stasis fails around it", "scifi"),
   h("rule", "jump drives refuse its vicinity", "scifi")
+];
+
+export const SCIFI_FRAGMENTS = [
+  f("substance", "collapsed star matter", "scifi"),
+  f("substance", "cryogel", "scifi"),
+  f("substance", "vacuum glass", "scifi"),
+  f("substance", "nanite fog", "scifi"),
+  f("place", "derelict hangars", "scifi"),
+  f("place", "jump-lane wake", "scifi"),
+  f("place", "orbital graveyards", "scifi"),
+  f("place", "generation-ship gardens", "scifi"),
+  f("agent", "colony AI", "scifi"),
+  f("agent", "first-contact teams", "scifi"),
+  f("agent", "void pirates", "scifi"),
+  f("bond", "orbits", "scifi"),
+  f("bond", "quarantines", "scifi"),
+  f("verb", "phases through bulkheads", "scifi"),
+  f("verb", "broadcasts on dead channels", "scifi"),
+  f("does", "recalibrates jump drives", "scifi"),
+  f("does", "maps dark-matter tides", "scifi"),
+  f("useAs", "a distress beacon", "scifi"),
+  f("size", "a shuttle bay", "scifi"),
+  f("size", "a gas giant's shadow", "scifi"),
+  f("source", "a failed terraforming seed", "scifi"),
+  f("source", "a dead probe's log", "scifi"),
+  f("force", "comms", "scifi"),
+  f("force", "gravity", "scifi"),
+  f("force", "stasis", "scifi"),
+  f("effect", "will die", "scifi"),
+  f("effect", "will flip", "scifi"),
+  f("effect", "will fail", "scifi")
+];
+
+export const SCIFI_PATTERNS = [
+  p("material", "it's plated with {substance}", "scifi"),
+  p("habitat", "it drifts through {place}", "scifi"),
+  p("origin", "it was recovered from {source}", "scifi")
 ];
