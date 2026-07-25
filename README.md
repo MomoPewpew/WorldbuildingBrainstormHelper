@@ -58,6 +58,26 @@ Avoid running `npm run build` while `npm run dev` is using the same `.next` fold
 rm -rf .next && npm run dev
 ```
 
+## Deploy (GitHub Actions → SFTP)
+
+On pushes to `main`, GitHub Actions builds the static export (`out/`) and uploads it via SFTP. Workflow: [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml).
+
+### Secrets
+
+| Secret | Purpose |
+|--------|---------|
+| `SSH_HOST` | SFTP hostname |
+| `SSH_USERNAME` | SFTP username |
+| `SSH_PASSWORD` | SFTP password |
+| `SSH_PORT` | Optional, default `22` |
+| `SSH_TARGET_DIR` | Optional remote dir (default `files`). Override if your host uses a different path. |
+
+### Variables (optional)
+
+| Variable | Purpose |
+|----------|---------|
+| `NEXT_PUBLIC_SITE_URL` | Site origin for absolute URLs (e.g. `https://ideas.example.com`) |
+
 ## Project layout
 
 ```
